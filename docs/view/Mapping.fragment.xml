@@ -1,61 +1,61 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
   <Dialog id="mappingDialog" title="Map columns" stretch="false">
     <content>
-      <VBox>
+      <VBox class="sapUiSmallMargin">
         <Text text="Detected headers:" />
-        <Tokenizer tokens="{= ${detectedHeaders>/headers}.map(h => ({text: h})) }" />
-        <Label text="Map fields to headers (select appropriate column for each):" class="sapUiSmallMarginTop" />
-        <VBox>
-          <HBox class="sapUiSmallMarginTop">
-            <Label text="Date" width="120px" />
-            <Select items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/date}">
-              <core:Item key="{detectedHeaders>.," text="{detectedHeaders>.}" xmlns:core="sap.ui.core" />
+        <Text text="{= ${detectedHeaders>/headers}.join(', ') }" wrapping="true" />
+
+        <VBox class="sapUiSmallMarginTop">
+          <HBox alignItems="Center">
+            <Label text="Date" width="140px" />
+            <Select width="240px" items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/date}">
+              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" />
             </Select>
           </HBox>
-          <HBox class="sapUiSmallMarginTop">
-            <Label text="Symbol" width="120px" />
-            <Select items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/symbol}">
-              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" xmlns:core="sap.ui.core" />
+          <HBox alignItems="Center" class="sapUiSmallMarginTop">
+            <Label text="Symbol" width="140px" />
+            <Select width="240px" items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/symbol}">
+              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" />
             </Select>
           </HBox>
-          <HBox class="sapUiSmallMarginTop">
-            <Label text="Name" width="120px" />
-            <Select items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/name}">
-              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" xmlns:core="sap.ui.core" />
+          <HBox alignItems="Center" class="sapUiSmallMarginTop">
+            <Label text="Name" width="140px" />
+            <Select width="240px" items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/name}">
+              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" />
             </Select>
           </HBox>
-          <HBox class="sapUiSmallMarginTop">
-            <Label text="Type (Buy/Sell)" width="120px" />
-            <Select items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/type}">
-              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" xmlns:core="sap.ui.core" />
+          <HBox alignItems="Center" class="sapUiSmallMarginTop">
+            <Label text="Type (Buy/Sell)" width="140px" />
+            <Select width="240px" items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/type}">
+              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" />
             </Select>
           </HBox>
-          <HBox class="sapUiSmallMarginTop">
-            <Label text="Quantity" width="120px" />
-            <Select items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/qty}">
-              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" xmlns:core="sap.ui.core" />
+          <HBox alignItems="Center" class="sapUiSmallMarginTop">
+            <Label text="Quantity" width="140px" />
+            <Select width="240px" items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/qty}">
+              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" />
             </Select>
           </HBox>
-          <HBox class="sapUiSmallMarginTop">
-            <Label text="Price" width="120px" />
-            <Select items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/price}">
-              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" xmlns:core="sap.ui.core" />
+          <HBox alignItems="Center" class="sapUiSmallMarginTop">
+            <Label text="Price" width="140px" />
+            <Select width="240px" items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/price}">
+              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" />
             </Select>
           </HBox>
-          <HBox class="sapUiSmallMarginTop">
-            <Label text="Fees" width="120px" />
-            <Select items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/fees}">
-              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" xmlns:core="sap.ui.core" />
+          <HBox alignItems="Center" class="sapUiSmallMarginTop">
+            <Label text="Fees" width="140px" />
+            <Select width="240px" items="{path:'detectedHeaders>/headers'}" selectedKey="{mapping>/fees}">
+              <core:Item key="{detectedHeaders>.}" text="{detectedHeaders>.}" />
             </Select>
           </HBox>
         </VBox>
       </VBox>
     </content>
-    <endButton>
-      <Button text="Save" press="onMappingSave" />
-    </endButton>
     <beginButton>
       <Button text="Cancel" press="onMappingCancel" />
     </beginButton>
+    <endButton>
+      <Button text="Save" press="onMappingSave" />
+    </endButton>
   </Dialog>
 </core:FragmentDefinition>

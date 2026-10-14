@@ -1,0 +1,90 @@
+<mvc:View controllerName="zStockAnalysis.controller.Results" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+  <VBox>
+    <Table id="yearTable" items="{path:'summaryByYear>/summaryByYear'}" visible="{= ${summaryByYear>/summaryByYear}.length > 0 }">
+      <columns>
+        <Column><Text text="{i18n>year}" /></Column>
+        <Column><Text text="{i18n>totalProceeds}" /></Column>
+        <Column><Text text="{i18n>totalCost}" /></Column>
+        <Column><Text text="{i18n>totalPL}" /></Column>
+      </columns>
+      <items>
+        <ColumnListItem>
+          <cells>
+            <Text text="{summaryByYear>year}" />
+            <Text text="{path:'summaryByYear>proceeds', formatter:'.fmt'}" />
+            <Text text="{path:'summaryByYear>cost', formatter:'.fmt'}" />
+            <Text text="{path:'summaryByYear>pnl', formatter:'.fmt'}" />
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+
+    <VBox id="ticketBox" class="sapUiSmallMarginTop" visible="{= ${summaryByTicket>/summaryByTicket}.length > 0 }">
+      <Title text="{i18n>plByTicket}" level="H3" />
+      <List id="ticketList" items="{path:'summaryByTicket>/summaryByTicket'}">
+        <items>
+          <CustomListItem>
+            <VBox class="sapUiSmallMargin">
+              <Text text="{summaryByTicket>symbol}" class="sapUiTinyMarginBottom" />
+              <Table items="{path:'summaryByTicket>years'}" inset="false">
+                <columns>
+                  <Column><Text text="{i18n>year}" /></Column>
+                  <Column><Text text="{i18n>month}" /></Column>
+                  <Column><Text text="{i18n>proceeds}" /></Column>
+                  <Column><Text text="{i18n>cost}" /></Column>
+                  <Column><Text text="{i18n>pl}" /></Column>
+                </columns>
+                <items>
+                  <ColumnListItem>
+                    <cells>
+                      <Text text="{year}" />
+                      <Text text="{month}" />
+                      <Text text="{path:'proceeds', formatter:'.fmt'}" />
+                      <Text text="{path:'cost', formatter:'.fmt'}" />
+                      <Text text="{path:'pnl', formatter:'.fmt'}" />
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+            </VBox>
+          </CustomListItem>
+        </items>
+      </List>
+    </VBox>
+
+    <Panel headerText="{i18n>details}" class="sapUiSmallMarginTop">
+      <Table id="detailTable" items="{path:'realizations>/realizations'}" visible="{= ${realizations>/realizations}.length > 0 }">
+        <columns>
+          <Column><Text text="{i18n>symbol}" /></Column>
+          <Column><Text text="{i18n>buyDate}" /></Column>
+          <Column><Text text="{i18n>sellDate}" /></Column>
+          <Column><Text text="{i18n>quantity}" /></Column>
+          <Column><Text text="{i18n>buyPrice}" /></Column>
+          <Column><Text text="{i18n>sellPrice}" /></Column>
+          <Column><Text text="{i18n>cost}" /></Column>
+          <Column><Text text="{i18n>proceeds}" /></Column>
+          <Column><Text text="{i18n>pl}" /></Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{realizations>symbol}" />
+              <Text text="{realizations>buyDate}" />
+              <Text text="{realizations>sellDate}" />
+              <Text text="{realizations>quantity}" />
+              <Text text="{path:'realizations>buyPrice', formatter:'.fmt'}" />
+              <Text text="{path:'realizations>sellPrice', formatter:'.fmt'}" />
+              <Text text="{path:'realizations>cost', formatter:'.fmt'}" />
+              <Text text="{path:'realizations>proceeds', formatter:'.fmt'}" />
+              <Text text="{path:'realizations>pnl', formatter:'.fmt'}" />
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+
+      <HBox justifyContent="End" class="sapUiSmallMarginTop">
+        <Button text="{i18n>exportCsv}" press="onExportCsv" />
+      </HBox>
+    </Panel>
+  </VBox>
+</mvc:View>
