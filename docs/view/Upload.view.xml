@@ -1,0 +1,28 @@
+<mvc:View controllerName="zStockAnalysis.controller.Upload" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:unified="sap.ui.unified" xmlns:core="sap.ui.core">
+  <Page id="uploadPage" title="{i18n>appTitle}">
+    <content>
+      <Panel headerText="{i18n>inputTitle}" expandable="false">
+        <VBox class="sapUiSmallMargin">
+          <Text text="{i18n>uploadHint}" wrapping="true" />
+          <unified:FileUploader id="fileUploader" name="file" change="onFileChange" buttonText="{i18n>chooseFile}" multiple="false" uploadUrl="none" />
+          <HBox class="sapUiSmallMarginTop" justifyContent="SpaceBetween">
+            <RadioButtonGroup id="modeGroup" select="onModeChange">
+              <items>
+                <core:Item key="year" text="{i18n>optionYear}" />
+                <core:Item key="ticket" text="{i18n>optionTicket}" />
+              </items>
+            </RadioButtonGroup>
+            <HBox>
+              <Button text="{i18n>mapHeaders}" press="onOpenMapping" />
+              <Button text="{i18n>generate}" type="Emphasized" press="onGenerate" enabled="{= ${transactions>/transactions}.length > 0 }" />
+            </HBox>
+          </HBox>
+        </VBox>
+      </Panel>
+
+      <Panel id="resultPanel" headerText="{i18n>results}" class="sapUiSmallMarginTop" expandable="true">
+        <mvc:XMLView viewName="zStockAnalysis.view.Results" />
+      </Panel>
+    </content>
+  </Page>
+</mvc:View>

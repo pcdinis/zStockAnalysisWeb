@@ -13,14 +13,18 @@ How to run
      - python -m http.server 8080
 2. Open: http://localhost:8080/index.html
 
+Header mapping UI
+- After uploading a file, the app will try to auto-detect column headers. If your spreadsheet uses different column names you can click "Map headers" to open the mapping dialog and select which column maps to Date, Symbol, Quantity, etc.
+- The mapping is saved in your browser's localStorage for future uploads but you can change it any time.
+
 Excel/CSV format (flexible)
 - The parser recognizes common header names (case-insensitive). Useful columns:
-  - Date (e.g., 2026-10-14 or Excel date)
-  - Symbol (e.g., AAPL)
+  - Date — e.g. 2020-05-21 or Excel date cell
+  - Symbol — stock ticker
   - Name (optional)
-  - Type or Side (Buy / Sell)
+  - Type or Side — Buy or Sell
   - Quantity or Qty
-  - Price (trade price). If you supply MarketPrice column it will be used to compute market value/unrealized.
+  - Price (trade price)
   - Fees or Commission (optional)
 
 Notes & behavior
@@ -28,14 +32,3 @@ Notes & behavior
 - Holdings are aggregated using FIFO for computing realized P/L.
 - If MarketPrice is not provided the last trade price will be used as marketPrice.
 - Charts show transaction prices over time for the selected symbol.
-
-Next improvements you might want
-- Add a manual override for market prices (per symbol).
-- Generate a daily price series (fill gaps) if you want smooth charts.
-- Add CSV upload preview and header mapping UI so users can map columns explicitly.
-- Export aggregated P&L to CSV / Excel.
-
-If you'd like, I can:
-- Add a mapping UI to let you choose which columns map to Date/Symbol/Qty/Price.
-- Add an "Import presets" or remember column mappings for repeated uploads.
-- Implement more advanced P/L (tax lots, custom cost-basis methods).
