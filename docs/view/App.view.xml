@@ -1,0 +1,20 @@
+<mvc:View controllerName="zStockAnalysis.controller.App" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
+  <App>
+    <SplitApp id="splitApp">
+      <masterPages>
+        <Page id="masterPage" showHeader="false">
+          <content>
+            <mvc:XMLView viewName="zStockAnalysis.view.StockList" />
+          </content>
+        </Page>
+      </masterPages>
+      <detailPages>
+        <Page id="detailPage" showHeader="false">
+          <content>
+            <mvc:XMLView viewName="zStockAnalysis.view.StockDetail" />
+          </content>
+        </Page>
+      </detailPages>
+    </SplitApp>
+  </App>
+</mvc:View>

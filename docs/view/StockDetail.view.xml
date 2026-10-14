@@ -1,0 +1,56 @@
+<mvc:View controllerName="zStockAnalysis.controller.StockDetail" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data" xmlns:feeds="sap.viz.ui5.controls.common.feeds">
+  <Page id="stockDetailPage" title="{selectedStock>/symbol}">
+    <content>
+      <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMargin">
+        <VBox>
+          <Title level="H2" text="{selectedStock>/symbol}"/>
+          <Text text="{parts:[{path:'selectedStock>/quantity'},{path:'selectedStock>/avgCost'},{path:'selectedStock>/marketPrice'}], formatter:'.formatDetailSummary'}"/>
+        </VBox>
+        <VBox>
+          <Text text="{i18n>realized}: {selectedStock>/realized}" />
+          <Text text="{i18n>unrealized}: {selectedStock>/unrealized}" />
+        </VBox>
+      </HBox>
+
+      <Panel headerText="{i18n>priceHistory}">
+        <viz:VizFrame id="priceViz" vizType="line" uiConfig="{applicationSet:'fiori'}" height="360px">
+          <viz.data:FlattenedDataset id="ds" data="{/history}">
+            <viz.data:dimensions>
+              <viz.data:DimensionDefinition name="Date" value="{date}" />
+            </viz.data:dimensions>
+            <viz.data:measures>
+              <viz.data:MeasureDefinition name="Price" value="{price}" />
+            </viz.data:measures>
+          </viz.data:FlattenedDataset>
+          <viz:feeds>
+            <feeds:FeedItem uid="valueAxis" type="Measure" values="Price"/>
+            <feeds:FeedItem uid="categoryAxis" type="Dimension" values="Date"/>
+          </viz:feeds>
+        </viz:VizFrame>
+      </Panel>
+
+      <Panel headerText="{i18n>transactions}">
+        <Table items="{path: 'transactions>/transactions', templateShareable: false}" visibleRowCount="6">
+          <columns>
+            <Column><Text text="{i18n>date}"/></Column>
+            <Column><Text text="{i18n>type}"/></Column>
+            <Column><Text text="{i18n>quantity}"/></Column>
+            <Column><Text text="{i18n>price}"/></Column>
+            <Column><Text text="{i18n>fees}"/></Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <Text text="{transactions>date}"/>
+                <Text text="{transactions>type}"/>
+                <Text text="{transactions>quantity}"/>
+                <Text text="{transactions>price}"/>
+                <Text text="{transactions>fees}"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </Panel>
+    </content>
+  </Page>
+</mvc:View>

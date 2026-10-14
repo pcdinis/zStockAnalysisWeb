@@ -1,0 +1,18 @@
+<mvc:View controllerName="zStockAnalysis.controller.StockList" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:unified="sap.ui.unified">
+  <Page id="stockListPage" title="{i18n>appTitle}">
+    <headerContent>
+      <Toolbar>
+        <ToolbarSpacer/>
+        <unified:FileUploader id="fileUploader" name="file" change="onFileChange" uploadUrl="none" buttonText="{i18n>uploadFile}" tooltip="{i18n>uploadTooltip}" />
+      </Toolbar>
+    </headerContent>
+
+    <content>
+      <SearchField id="search" liveChange="onSearch" placeholder="{i18n>searchPlaceholder}" width="100%"/>
+      <List id="stockList" mode="SingleSelectMaster" select="onSelect" items="{path: 'holdings>/holdings', templateShareable: false}">
+        <StandardListItem title="{holdings>symbol}" description="{holdings>name}" info="{parts:[{path:'holdings>quantity'},{path:'holdings>marketPrice'}], formatter:'.formatQtyAndValue'}" infoState="{path:'holdings>unrealized', formatter:'.formatUnrealizedState'}"/>
+      </List>
+      <Text id="uploadHint" text="{i18n>uploadHint}" class="sapUiSmallMarginTop"/>
+    </content>
+  </Page>
+</mvc:View>
