@@ -4,14 +4,14 @@
       <masterPages>
         <Page id="masterPage" showHeader="false">
           <content>
-            <mvc:XMLView viewName="zStockAnalysis.view.StockList" />
+            <core:Fragment fragmentName="zStockAnalysis.view.StockList" type="XML" xmlns:core="sap.ui.core"/>
           </content>
         </Page>
       </masterPages>
       <detailPages>
         <Page id="detailPage" showHeader="false">
           <content>
-            <mvc:XMLView viewName="zStockAnalysis.view.StockDetail" />
+            <core:Fragment fragmentName="zStockAnalysis.view.StockDetail" type="XML" xmlns:core="sap.ui.core"/>
           </content>
         </Page>
       </detailPages>
